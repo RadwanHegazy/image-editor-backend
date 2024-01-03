@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models import ImageModel
 
-# Register your models here.
+
+class imgPanel (admin.ModelAdmin): 
+    list_display = ('id','image','upload_at',)
+
+admin.site.register(ImageModel, imgPanel)
