@@ -8,17 +8,17 @@ class ImageProcess:
         self.img_path = img_path
         self.image = Image.open(self.img_path)
 
-        if has_sepia :
+        if has_sepia is True :
             self.sepia()
         
-        if has_grayscale :
+        if has_grayscale is True:
             self.grayscale()
     
-    def contrast (self, num : float) : 
+    def contrast (self, num) : 
         enchancer = ImageEnhance.Contrast(self.image)
         self.image = enchancer.enhance(num)
 
-    def brightness (self, num : float) : 
+    def brightness (self, num) : 
         enchancer = ImageEnhance.Brightness(self.image)
         self.image = enchancer.enhance(num)
 
@@ -51,8 +51,8 @@ class ImageProcess:
     def grayscale (self) : 
         self.image = self.image.convert('L')
 
-    def saturate (self, sat_num : float) :
-        converter = ImageEnhance.Color(self.image)
+    def saturate (self, sat_num) :
+        converter = ImageEnhance.Color(self.image)  
         self.image = converter.enhance(sat_num)
 
     def save (self) : 

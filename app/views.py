@@ -22,11 +22,12 @@ def image_upload (request) :
 
         current_img_path = img.image.path
 
-        has_sepia = request.data.get('has_sepia',False)
-        has_grayscale = request.data.get('has_grayscale',False)
-        brightness = request.data.get('brightness',None)
-        contrast = request.data.get('contrast',None)
-        saturate = request.data.get('saturate',None)
+        has_sepia = request.data.get('has_sepia')
+        has_grayscale = request.data.get('has_grayscale')
+
+        brightness = int(request.data.get('brightness',None)) / 10
+        contrast = int(request.data.get('contrast',None)) / 10
+        saturate = int(request.data.get('saturate',None)) / 10
 
 
         process = ImageProcess(
@@ -34,15 +35,15 @@ def image_upload (request) :
             has_sepia = has_sepia,
             img_path = current_img_path
         )
-
+        
         if brightness :
-            process.brightness(float(brightness))
+            process.brightness(brightness)
         
         if contrast :
-            process.contrast(float(contrast))
+            process.contrast(contrast)
         
         if saturate :
-            process.saturate(float(saturate))
+            process.saturate(saturate)
 
 
         process.save()
